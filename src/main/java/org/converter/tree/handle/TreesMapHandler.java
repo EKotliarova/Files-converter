@@ -17,11 +17,11 @@ public class TreesMapHandler {
     private final List<TagsHandler> tagsHandlers;
 
     public void handle(TreesMap treesMap) {
-        treesMap.forEach(entry -> handleTree(entry.getKey(), entry.getValue()));
+        treesMap.forEach(entry -> handleTrees(entry.getKey(), entry.getValue()));
     }
 
-    private void handleTree(String itemId, Tree tree) {
-        tagsHandlers.forEach(tagsHandler -> tagsHandler.handle(itemId, tree));
+    private void handleTrees(String itemId, List<Tree> trees) {
+        tagsHandlers.forEach(tagsHandler -> tagsHandler.handle(itemId, trees));
         log.info("Item data processing with id {} finished", itemId);
     }
 }

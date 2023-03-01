@@ -11,21 +11,21 @@ import java.util.Optional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class TreeBuilderFromFileFactory {
+public class TreeReaderFromFileFactory {
 
-    private final List<TreeBuilderFromFile> treeBuildersFromFiles;
+    private final List<TreeReaderFromFile> treeReadersFromFiles;
 
-    public Optional<TreeBuilderFromFile> getTreeBuilderForFile(String fileName) {
+    public Optional<TreeReaderFromFile> getTreeReaderForFile(String fileName) {
         var extension = FilenameUtils.getExtension(fileName);
-        var treeBuilder = treeBuildersFromFiles
+        var treeReader = treeReadersFromFiles
                 .stream()
                 .filter(builder -> builder.supportsFileExtension(extension))
                 .findFirst();
 
-        if (treeBuilder.isEmpty()) {
+        if (treeReader.isEmpty()) {
             log.error("{} file format is not supported", fileName);
         }
 
-        return treeBuilder;
+        return treeReader;
     }
 }

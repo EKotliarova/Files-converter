@@ -19,6 +19,5 @@ tree:
     duplicates:
       - tag-to-keep: giata_id
         tag-to-delete: GiataID
-    tags-to-remove-from-root: content, result, data, found
-    new-root-tag: hotel
+    tags-to-remove-from-root: content, result, data, found, hotel
     id-tag: giata_id

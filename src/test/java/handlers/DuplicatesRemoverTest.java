@@ -1,17 +1,13 @@
 package handlers;
 
-import lombok.AllArgsConstructor;
-import lombok.Value;
 import org.converter.properties.TreeHandlingProperties;
-import org.converter.tree.build.TreeBuilderFromJSON;
 import org.converter.tree.handle.tags.DuplicatesRemover;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,7 +34,7 @@ public class DuplicatesRemoverTest extends HandlerTest {
         var resultTree = getTree(filePaths.getAfterPathFile());
         var treeToHandle = getTree(filePaths.getBeforePathFile());
 
-        duplicatesRemover.handle(null, treeToHandle);
+        duplicatesRemover.handle(null, List.of(treeToHandle));
 
         assertEquals(resultTree.getRoot(), treeToHandle.getRoot());
     }

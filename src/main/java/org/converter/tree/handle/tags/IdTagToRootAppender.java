@@ -5,6 +5,8 @@ import org.converter.tree.Tree;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Adds an id with a tag specified in the configuration to the root.
  */
@@ -21,8 +23,8 @@ public class IdTagToRootAppender extends TagsHandler {
     }
 
     @Override
-    public void handle(String itemId, Tree tree) {
-        setIdToRoot(tree, itemId);
+    public void handle(String itemId, List<Tree> trees) {
+        trees.forEach(tree -> setIdToRoot(tree, itemId));
     }
 
     private void setIdToRoot(Tree tree, String id) {

@@ -11,7 +11,6 @@ public class TagsHandlerOrderManager {
     private static final List<Class> HANDLERS_ORDER = List.of(
             TagsFromRootRemover.class,
             DuplicatesRemover.class,
-            NewRootTagAppender.class,
             IdTagToRootAppender.class
     );
 

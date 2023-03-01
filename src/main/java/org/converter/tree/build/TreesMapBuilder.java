@@ -18,7 +18,7 @@ import java.util.Optional;
 public class TreesMapBuilder {
 
     private final InputFilesProperties inputFilesProperties;
-    private final TreeBuilderFromFileFactory treeBuilderFromFileFactory;
+    private final TreeReaderFromFileFactory treeReaderFromFileFactory;
 
     public TreesMap buildTreesCollectionFromFiles() {
         var folderPath = new File(inputFilesProperties.getInputFolderPath()).getAbsolutePath();
@@ -37,8 +37,8 @@ public class TreesMapBuilder {
     }
 
     private void updateTreesMapFromFile(TreesMap treesMap, File file) {
-        var treeBuilder = treeBuilderFromFileFactory.getTreeBuilderForFile(file.getName());
-        treeBuilder.ifPresent(builder -> {
+        var treeReader = treeReaderFromFileFactory.getTreeReaderForFile(file.getName());
+        treeReader.ifPresent(builder -> {
             var itemId = Utils.getIdFromFilename(file.getName());
 
             if (itemId.isEmpty()) {
@@ -49,10 +49,7 @@ public class TreesMapBuilder {
                 return;
             }
 
-            var existedTreeForItem = treesMap.getExistedTreeForItem(itemId.get());
-            var tree = builder.getOrUpdateTreeFromFile(
-                    file.getAbsolutePath(), Optional.ofNullable(existedTreeForItem)
-            );
+            var tree = builder.readTreeFromFile(file.getAbsolutePath());
             treesMap.setTreeToItemId(itemId.get(), tree);
         });
     }

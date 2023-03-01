@@ -24,10 +24,12 @@ public class TagsFromRootRemover extends TagsHandler {
     }
 
     @Override
-    public void handle(String itemId, Tree tree) {
-        for (var tag : tagsToRemoveFromRoot) {
-            removeFromRoot(tree, tag);
-        }
+    public void handle(String itemId, List<Tree> trees) {
+        trees.forEach(tree -> {
+            for (var tag : tagsToRemoveFromRoot) {
+                removeFromRoot(tree, tag);
+            }
+        });
     }
 
     private void removeFromRoot(Tree tree, String tagToRemoveFromRoot) {

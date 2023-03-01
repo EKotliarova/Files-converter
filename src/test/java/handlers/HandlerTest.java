@@ -3,14 +3,13 @@ package handlers;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.converter.tree.Tree;
-import org.converter.tree.build.TreeBuilderFromJSON;
+import org.converter.tree.build.TreeReaderFromJSON;
 
 import java.io.File;
-import java.util.Optional;
 
 public class HandlerTest {
 
-    protected final TreeBuilderFromJSON treeBuilderFromJSON = new TreeBuilderFromJSON();
+    protected final TreeReaderFromJSON treeReaderFromJSON = new TreeReaderFromJSON();
 
     @Value
     @AllArgsConstructor
@@ -20,9 +19,8 @@ public class HandlerTest {
     }
 
     protected Tree getTree(String filePath) {
-        return  treeBuilderFromJSON.getOrUpdateTreeFromFile(
-                new File(filePath).getAbsolutePath(),
-                Optional.empty()
+        return  treeReaderFromJSON.readTreeFromFile(
+                new File(filePath).getAbsolutePath()
         );
     }
 }

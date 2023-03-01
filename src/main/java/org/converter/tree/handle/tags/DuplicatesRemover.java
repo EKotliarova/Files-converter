@@ -24,10 +24,12 @@ public class DuplicatesRemover extends TagsHandler {
     }
 
     @Override
-    public void handle(String itemId, Tree tree) {
-        for (var tags : duplicates) {
-            removeDuplicate(tree, tags.getTagToKeep(), tags.getTagToDelete());
-        }
+    public void handle(String itemId, List<Tree> trees) {
+        trees.forEach(tree -> {
+            for (var tags : duplicates) {
+                removeDuplicate(tree, tags.getTagToKeep(), tags.getTagToDelete());
+            }
+        });
     }
 
     private void removeDuplicate(Tree tree, String tag, String duplicateTag) {

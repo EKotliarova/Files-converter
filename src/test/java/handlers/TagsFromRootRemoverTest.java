@@ -32,7 +32,7 @@ public class TagsFromRootRemoverTest extends HandlerTest {
         var resultTree = getTree(filePaths.getAfterPathFile());
         var treeToHandle = getTree(filePaths.getBeforePathFile());
 
-       tagsFromRootRemover.handle(null, treeToHandle);
+       tagsFromRootRemover.handle(null, List.of(treeToHandle));
 
         assertEquals(resultTree.getRoot(), treeToHandle.getRoot());
     }
