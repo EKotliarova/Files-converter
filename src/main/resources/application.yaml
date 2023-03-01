@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: default
+
+downloading:
+  image:
+    download-time-limit-in-millis: 200
+    images-output-folder-path: src/main/resources/output/images
+
+files:
+  input:
+    input-folder-path: src/main/resources/input
+  output:
+    output-folder-path: src/main/resources/output
+    output-file-name: result.json
+
+tree:
+  handling:
+    duplicates:
+      - tag-to-keep: giata_id
+        tag-to-delete: GiataID
+    tags-to-remove-from-root: content, result, data, found
+    new-root-tag: hotel
+    id-tag: giata_id
