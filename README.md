@@ -37,9 +37,16 @@ tree:
       - tag-to-keep: giata_id - tag to be kept
         tag-to-delete: GiataID - tag to be removed if tag-to-keep exists
     tags-to-remove-from-root: content, result, data, found - tags to be removed from the root (their children will be attached to their parents)
-    new-root-tag: hotel - tag to be made the root
     id-tag: giata_id - tag - id of the element to be added to the root
 ```
+The order of operations on the input data is as follows:
+
+1. Removing specified root tags.
+2. Removing specified duplicates.
+3. Adding an id based on the specified tag.
+
+If any of the settings are missing, the corresponding stage will be skipped.
+
 ## How to run
 
 Run from IDE or manually:
