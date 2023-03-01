@@ -60,16 +60,17 @@ public class FlowManager {
         FolderUtils.createFolder(new File(imageDownloadingProperties.getImagesOutputFolderPath()));
 
         for (var entry : treesMap) {
+
+            var outputFolder = new File(imageDownloadingProperties.getImagesOutputFolderPath(), entry.getKey());
+            FolderUtils.createFolder(outputFolder);
+
             for (var value : entry.getValue()) {
                 var urls = treeUrlsSearcher.search(value);
-                var outputFolder = new File(imageDownloadingProperties.getImagesOutputFolderPath(), entry.getKey());
-
-                FolderUtils.createFolder(outputFolder);
 
                 downloadTasks.add(imagesDownloader.downloadImagesToFolder(outputFolder.getAbsolutePath(), urls));
             }
 
-            downloadTasks.forEach(CompletableFuture::join);
+            CompletableFuture.allOf(downloadTasks.toArray(CompletableFuture[]::new)).join();
         }
     }
 }
