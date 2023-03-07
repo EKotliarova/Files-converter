@@ -31,27 +31,6 @@ public class TreeReaderFromJSON implements TreeReaderFromFile {
         }
     }
 
-    private ObjectNode mergeTrees(ObjectNode first, ObjectNode second, ObjectMapper objectMapper) {
-        var mergedNode = first.deepCopy();
-        mergedNode.setAll(second);
-        Iterator<String> fieldNames = mergedNode.fieldNames();
-        while (fieldNames.hasNext()) {
-            String fieldName = fieldNames.next();
-
-            JsonNode valueOfFirst = first.get(fieldName);
-            JsonNode valueOfSecond = second.get(fieldName);
-
-            if (valueOfFirst != null && valueOfFirst.equals(valueOfSecond)) {
-                ArrayNode arrayNode = objectMapper.createArrayNode();
-                arrayNode.add(valueOfFirst);
-                arrayNode.add(valueOfSecond);
-
-                mergedNode.set(fieldName, arrayNode);
-            }
-        }
-        return mergedNode;
-    }
-
     @Override
     public boolean supportsFileExtension(String extension) {
         return SUPPORTED_FILE_EXTENSIONS.contains(extension);

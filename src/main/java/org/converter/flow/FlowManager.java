@@ -30,7 +30,6 @@ public class FlowManager {
     private final TreesToFileWriterFactory treesToFileWriterFactory;
     private final ImageDownloadingProperties imageDownloadingProperties;
     private TreesMap treesMap;
-
     private MergedTreesMap mergedTreesMap;
 
     public FlowManager readAllFiles() {
