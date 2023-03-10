@@ -6,7 +6,7 @@ An application that can merge multiple files with structured data into an array 
 
 Data merging is done based on the id in the file name: {id}-{...}.ext. If the ids match, it means the data belongs to the same object. Each element of the resulting array is the merged data from files with the same id.
 
-It also downloads all the images specified in the source files and downloads them, grouping them by the id of the source files.
+It also downloads all the images specified in the source files grouping them by the id of the source files.
 
 ## Configuration
 
